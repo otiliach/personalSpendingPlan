@@ -1,0 +1,37 @@
+<p>Insert data!</p>
+<h1 mat-dialog-title>{{isOnEdit ? 'Edit' : 'Add'}} element</h1>
+<div mat-dialog-content>
+
+    <form [formGroup]="newItem">
+        <mat-form-field>
+            <input matInput [readonly]="isOnEdit" placeholder="Position" formControlName="position">
+            <mat-error>This field is required accepted</mat-error>
+        </mat-form-field>
+
+        <!--<mat-error>At least three characters</mat-error>-->
+
+        <mat-form-field>
+            <mat-label>Activity</mat-label>
+                <select matNativeControl formControlName="activity">
+                    <option *ngFor="let option of activityOptions" [value]="option.value">{{option.label}}</option>
+                  </select>
+          </mat-form-field>
+          
+
+        <mat-form-field>
+            <input matInput placeholder="Item" formControlName="item">
+        </mat-form-field>
+        
+        <mat-form-field>
+            <input matInput placeholder="Price" formControlName="price">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Quantity" formControlName="quantity">
+        </mat-form-field>
+    </form>
+
+    <div mat-dialog-actions>
+        <button mat-button (click)="onCancel()">Cancel</button>
+        <button mat-button [mat-dialog-close]="newItem" [disabled]= "newItem.invalid" cdkFocusInitial>Ok</button>
+    </div>
